@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".modules.ui.main.MainActivity">
-
+    <include layout="@layout/view_title"/>
+    <Button
+        android:id="@+id/btn_get_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求相机权限"
+        />
 </LinearLayout>

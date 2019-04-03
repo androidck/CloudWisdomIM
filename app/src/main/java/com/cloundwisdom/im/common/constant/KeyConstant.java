@@ -10,4 +10,7 @@ public class KeyConstant {
 
     /** QQ AppKey **/
     public static String QQ_APP_KEY="";
+
+    /** 浏览器模式 **/
+    public static int BROWSER_PARAM_MODE=1;
 }

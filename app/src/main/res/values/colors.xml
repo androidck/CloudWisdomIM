@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="windowBackground">#F4F4F4</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#0096ff </color>
+    <color name="color_80_blue">#2677ff</color>
+    <color name="tipColor">#b1b1b1</color>
+
+    <color name="textColor">#323232</color>
+
+    <color name="textRate">#ffa752</color>
+
+    <color name="textShareMoist">#ffc000</color>
+    ffa752
+    <color name="colorDeep">#8d8d8d</color>
+    <!-- 按钮按压时的颜色 -->
+    <color name="colorButtonPressed">#0096ff</color>
+    <!-- 按钮禁用时的颜色 -->
+    <color name="colorButtonDisable">#D8D8D8</color>
+    <!-- 分割线的颜色 -->
+    <color name="colorLine">#E5E5E5</color>
+
+    <!-- 交易成功 -->
+    <color name="tradeSuccess">#0ba71d</color>
+    <!-- 交易失败 -->
+    <color name="tradeFail">#E5E5E5</color>
+    <!-- 交易中 -->
+    <color name="tradeLoading">#ffc000</color>
+
+    <!-- 分割线的颜色 -->
+    <color name="colorLines">#F0F0F0</color>
+
+    <color name="colorButton">#0096ff</color>
+
+    <color name="colorRepayment">#ff777d</color>
+
+    <color name="ml_white">#ffffffff</color>
+    <color name="ml_gray">#ff9e9e9e</color>
+    <color name="ml_blue">#ff239efe</color>
+    <color name="ml_red">#ffff0000</color>
+    <color name="alpha_05_white">#0DFFFFFF</color>
 </resources>

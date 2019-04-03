@@ -45,8 +45,7 @@ public class ShareUtils {
     }
 
     //单利模式
-    public static ShareUtils
-    getInstance(Activity activity){
+    public static ShareUtils getInstance(Activity activity){
         if (instance==null){
             synchronized (ShareUtils.class){
                 if (instance==null){

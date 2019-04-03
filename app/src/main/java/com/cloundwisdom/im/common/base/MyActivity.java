@@ -1,5 +1,6 @@
 package com.cloundwisdom.im.common.base;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +11,6 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.base.helper.ActivityStackManager;
 import com.hjq.toast.ToastUtils;
-import com.hjq.umeng.UmengHelper;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,6 +23,7 @@ import butterknife.Unbinder;
  */
 public abstract class MyActivity extends UIActivity
         implements OnTitleBarListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public abstract class MyActivity extends UIActivity
                 ((TitleBar) findViewById(getTitleBarId())).setOnTitleBarListener(this);
             }
         }
+
 
         mButterKnife = ButterKnife.bind(this);
 
@@ -114,15 +116,13 @@ public abstract class MyActivity extends UIActivity
     @Override
     protected void onResume() {
         super.onResume();
-        // 友盟统计
-        UmengHelper.onResume(this);
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // 友盟统计
-        UmengHelper.onPause(this);
+
     }
 
     @Override

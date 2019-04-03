@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
+import com.cloundwisdom.im.R;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.base.BaseActivity;
-import com.hjq.demo.R;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 

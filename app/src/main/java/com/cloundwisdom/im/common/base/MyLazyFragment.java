@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
-import com.hjq.umeng.UmengHelper;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -34,15 +33,13 @@ public abstract class MyLazyFragment extends UILazyFragment {
     @Override
     public void onResume() {
         super.onResume();
-        // 友盟统计
-        UmengHelper.onResume(this);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        // 友盟统计
-        UmengHelper.onPause(this);
+
     }
 
     @Override
