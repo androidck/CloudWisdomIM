@@ -9,11 +9,11 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 
 /**
  * @创建者 CSDN_LQR
@@ -35,7 +35,7 @@ public class ApiRetrofit extends BaseApiRetrofit {
                 .baseUrl(HttpConstant.BASE_URL)
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(MyApi.class);
     }

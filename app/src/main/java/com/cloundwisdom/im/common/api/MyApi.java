@@ -6,9 +6,9 @@ import com.cloundwisdom.im.modules.entry.NewsEntry;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * @创建者 CSDN_LQR

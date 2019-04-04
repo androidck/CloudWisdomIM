@@ -4,20 +4,22 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.cloundwisdom.im.common.api.ApiRetrofit;
+import com.cloundwisdom.im.common.base.BaseObserver;
+import com.cloundwisdom.im.common.base.BaseResponse;
 import com.cloundwisdom.im.common.base.MyActivity;
 import com.cloundwisdom.im.modules.adapter.NewsAdapter;
 import com.cloundwisdom.im.modules.entry.NewsEntry;
 import com.cloundwisdom.im.common.base.BasePresenter;
 import com.cloundwisdom.im.modules.ui.view.IMainView;
-import com.hjq.base.view.BaseActivity;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class MainPresenter extends BasePresenter<IMainView> {
 
@@ -28,8 +30,8 @@ public class MainPresenter extends BasePresenter<IMainView> {
     }
 
     public void initView(){
-        getView().getRecyclerView().setLayoutManager(new LinearLayoutManager(mContext));
-        adapter=new NewsAdapter(mContext,lists);
+        getView().getRecyclerView().setLayoutManager(new LinearLayoutManager(prContext));
+        adapter=new NewsAdapter(prContext,lists);
         getView().getRecyclerView().setAdapter(adapter);
         getView().getRefreshLayout().setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
@@ -61,18 +63,31 @@ public class MainPresenter extends BasePresenter<IMainView> {
 
     //获取列表数据
     public void getNewsList(){
-        mContext.showWaitingDialog("加载中....");
+        prContext.showWaitingDialog("加载中....");
         ApiRetrofit.getInstance().getNewsList(pageSize,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listBaseResponse -> {
-                    mContext.hideWaitingDialog();
-                   if (listBaseResponse.getCode()==200){
-                       lists.addAll(listBaseResponse.getNewslist());
-                       adapter.notifyDataSetChanged();
-                   }else {
-                       toast("暂无数据");
-                   }
+                .subscribe(new BaseObserver<List<NewsEntry>>(prContext) {
+                    @Override
+                    protected void onSuccess(BaseResponse<List<NewsEntry>> t){
+                        prContext.hideWaitingDialog();
+                        lists.addAll(t.getNewslist());
+                        adapter.notifyDataSetChanged();
+                        toast("加载完成");
+                    }
+
+                    @Override
+                    protected void onError(BaseResponse<List<NewsEntry>> t){
+                        prContext.hideWaitingDialog();
+                        toast("暂无数据");
+                    }
+
+                    @Override
+                    protected void onFailure(Throwable e, boolean isNetWorkError){
+                        prContext.hideWaitingDialog();
+                        toast("网络连接失败，请联系网络管理员");
+                    }
                 });
+
     }
 }
