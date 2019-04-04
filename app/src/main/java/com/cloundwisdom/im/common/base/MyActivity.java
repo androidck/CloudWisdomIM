@@ -1,12 +1,17 @@
 package com.cloundwisdom.im.common.base;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.cloundwisdom.im.R;
+import com.cloundwisdom.im.common.view.CustomDialog;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.base.helper.ActivityStackManager;
@@ -14,6 +19,7 @@ import com.hjq.toast.ToastUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  *    author : Android 轮子哥
@@ -24,6 +30,9 @@ import butterknife.Unbinder;
 public abstract class MyActivity extends UIActivity
         implements OnTitleBarListener {
 
+
+    private CustomDialog mDialogWaiting;
+    private MaterialDialog mMaterialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,5 +154,62 @@ public abstract class MyActivity extends UIActivity
 
     public void toast(Object object) {
         ToastUtils.show(object);
+    }
+
+    /**
+     * 显示等待提示框
+     */
+    public Dialog showWaitingDialog(String tip) {
+        hideWaitingDialog();
+        View view = View.inflate(this, R.layout.dialog_waiting, null);
+        if (!TextUtils.isEmpty(tip))
+            ((TextView) view.findViewById(R.id.tvTip)).setText(tip);
+        mDialogWaiting = new CustomDialog(this, view, R.style.MyDialog);
+        mDialogWaiting.show();
+        mDialogWaiting.setCancelable(false);
+        return mDialogWaiting;
+    }
+
+    /**
+     * 隐藏等待提示框
+     */
+    public void hideWaitingDialog() {
+        if (mDialogWaiting != null) {
+            mDialogWaiting.dismiss();
+            mDialogWaiting = null;
+        }
+    }
+
+
+    /**
+     * 显示MaterialDialog
+     */
+    public MaterialDialog showMaterialDialog(String title, String message, String positiveText, String negativeText, View.OnClickListener positiveButtonClickListener, View.OnClickListener negativeButtonClickListener) {
+        hideMaterialDialog();
+        mMaterialDialog = new MaterialDialog(this);
+        if (!TextUtils.isEmpty(title)) {
+            mMaterialDialog.setTitle(title);
+        }
+        if (!TextUtils.isEmpty(message)) {
+            mMaterialDialog.setMessage(message);
+        }
+        if (!TextUtils.isEmpty(positiveText)) {
+            mMaterialDialog.setPositiveButton(positiveText, positiveButtonClickListener);
+        }
+        if (!TextUtils.isEmpty(negativeText)) {
+            mMaterialDialog.setNegativeButton(negativeText, negativeButtonClickListener);
+        }
+        mMaterialDialog.show();
+        return mMaterialDialog;
+    }
+
+    /**
+     * 隐藏MaterialDialog
+     */
+    public void hideMaterialDialog() {
+        if (mMaterialDialog != null) {
+            mMaterialDialog.dismiss();
+            mMaterialDialog = null;
+        }
     }
 }

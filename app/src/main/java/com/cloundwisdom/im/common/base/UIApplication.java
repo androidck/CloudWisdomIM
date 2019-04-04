@@ -10,7 +10,7 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
  *    time   : 2018/10/18
  *    desc   : 支持侧滑的Application基类
  */
-public abstract class UIApplication extends Application {
+public abstract class UIApplication extends BaseApplication {
 
     @Override
     public void onCreate() {

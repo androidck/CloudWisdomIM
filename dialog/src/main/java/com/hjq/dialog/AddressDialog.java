@@ -18,9 +18,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hjq.base.BaseDialog;
-import com.hjq.base.BaseDialogFragment;
-import com.hjq.base.BaseRecyclerViewAdapter;
+import com.hjq.base.view.BaseDialog;
+import com.hjq.base.view.BaseDialogFragment;
+import com.hjq.base.view.BaseRecyclerViewAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

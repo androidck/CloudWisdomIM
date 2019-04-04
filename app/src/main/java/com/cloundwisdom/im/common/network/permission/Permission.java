@@ -1,4 +1,4 @@
-package com.hjq.base.permission;
+package com.cloundwisdom.im.common.network.permission;
 
 public class Permission {
 

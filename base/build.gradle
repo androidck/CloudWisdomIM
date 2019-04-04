@@ -17,4 +17,6 @@ dependencies {
     implementation 'com.tencent.sonic:sdk:3.1.0'
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:latest.integration'
+
+
 }

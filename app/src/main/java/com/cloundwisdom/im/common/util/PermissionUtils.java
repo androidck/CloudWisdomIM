@@ -1,10 +1,8 @@
 package com.cloundwisdom.im.common.util;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.View;
 
-import com.hjq.base.permission.Permission;
+import com.cloundwisdom.im.common.network.permission.Permission;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 import com.hjq.toast.ToastUtils;

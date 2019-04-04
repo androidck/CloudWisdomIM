@@ -7,8 +7,8 @@ import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hjq.base.BaseDialog;
-import com.hjq.base.BaseDialogFragment;
+import com.hjq.base.view.BaseDialog;
+import com.hjq.base.view.BaseDialogFragment;
 
 /**
  *    author : Android 轮子哥

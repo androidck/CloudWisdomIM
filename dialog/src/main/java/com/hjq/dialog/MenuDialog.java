@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hjq.base.BaseDialog;
-import com.hjq.base.BaseDialogFragment;
-import com.hjq.base.BaseRecyclerViewAdapter;
+import com.hjq.base.view.BaseDialog;
+import com.hjq.base.view.BaseDialogFragment;
+import com.hjq.base.view.BaseRecyclerViewAdapter;
 
 import java.util.Arrays;
 import java.util.List;

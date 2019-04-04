@@ -1,4 +1,4 @@
-package com.hjq.base;
+package com.hjq.base.view;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

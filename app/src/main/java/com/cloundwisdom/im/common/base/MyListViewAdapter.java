@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hjq.base.BaseListViewAdapter;
+import com.hjq.base.view.BaseListViewAdapter;
 import com.hjq.image.ImageLoader;
 
 import butterknife.ButterKnife;

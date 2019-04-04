@@ -5,6 +5,8 @@ package com.cloundwisdom.im.common.constant;
  */
 public class KeyConstant {
 
+    public static final String TAG = "BaseApiRetrofit";
+    public static final int DEBUGLEVEL = 1;
     /** 微信AppKey **/
     public static String WEI_CHAT_APP_KEY="";
 

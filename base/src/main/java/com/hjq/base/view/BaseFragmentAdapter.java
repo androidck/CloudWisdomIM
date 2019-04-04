@@ -1,4 +1,4 @@
-package com.hjq.base;
+package com.hjq.base.view;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

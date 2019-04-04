@@ -1,18 +1,16 @@
 package com.cloundwisdom.im.modules.ui.main;
 
-import android.content.Context;
-import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.cloundwisdom.im.R;
+import com.cloundwisdom.im.common.base.BasePresenter;
 import com.cloundwisdom.im.common.base.MyActivity;
 import com.cloundwisdom.im.common.constant.ActivityConstant;
-import com.cloundwisdom.im.common.constant.KeyConstant;
-import com.cloundwisdom.im.common.util.PermissionUtils;
+import com.cloundwisdom.im.modules.dialog.TestDialog;
 import com.hjq.bar.TitleBar;
-import com.hjq.base.permission.Permission;
+import com.cloundwisdom.im.common.network.permission.Permission;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,13 +51,14 @@ public class MainActivity extends MyActivity {
 
     @OnClick(R.id.btn_get_permission)
     public void onViewClicked() {
-        ARouter
-                .getInstance()
-                .build(ActivityConstant.BROWSER)
-                .withString("url","http://m.baidu.com")
-                .withInt("mode",KeyConstant.BROWSER_PARAM_MODE)
-                .navigation();
+        showMaterialDialog(null, "确定要退出账号吗？","确定","取消"
+                , v1 -> hideMaterialDialog()
+                , v2 -> hideMaterialDialog());
     }
 
 
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 }

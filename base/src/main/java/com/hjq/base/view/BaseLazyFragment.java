@@ -1,4 +1,4 @@
-package com.hjq.base;
+package com.hjq.base.view;
 
 import android.app.Activity;
 import android.content.Context;

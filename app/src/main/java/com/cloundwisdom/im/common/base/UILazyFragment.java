@@ -1,7 +1,7 @@
 package com.cloundwisdom.im.common.base;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.hjq.base.BaseLazyFragment;
+import com.hjq.base.view.BaseLazyFragment;
 
 /**
  *    author : Android 轮子哥

@@ -1,4 +1,4 @@
-package com.hjq.base;
+package com.hjq.base.view;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -21,6 +21,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.hjq.base.R;
 
 /**
  *    author : Android 轮子哥
