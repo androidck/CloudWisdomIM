@@ -1,7 +1,9 @@
 package com.cloundwisdom.im.common.api;
 
+import com.cloundwisdom.im.common.base.BaseResponse;
 import com.cloundwisdom.im.common.constant.HttpConstant;
 import com.cloundwisdom.im.common.network.BaseApiRetrofit;
+import com.cloundwisdom.im.modules.entry.NewsEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -59,6 +61,11 @@ public class ApiRetrofit extends BaseApiRetrofit {
     public Observable<LoginResponse> login(String region, String phone, String password) {
         return mApi.login(getRequestBody(new LoginRequest(region, phone, password)));
     }*/
+
+   public Observable<BaseResponse<List<NewsEntry>>> getNewsList(int num, int page){
+       return mApi.getNewsList(num,page);
+   }
+
 
 
 }

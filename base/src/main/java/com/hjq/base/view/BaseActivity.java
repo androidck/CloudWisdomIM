@@ -24,6 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
+
     /**
      * 获取一个 Handler 对象
      */
@@ -34,13 +35,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initActivity();
-    }
-
-    protected void initActivity() {
+        initPresenter();
         initLayout();
         initView();
         initData();
+    }
+
+    protected void initPresenter(){
+
     }
 
     protected void initLayout() {
@@ -219,5 +221,11 @@ public abstract class BaseActivity extends AppCompatActivity {
          * @param data              数据
          */
         void onActivityResult(int resultCode, @Nullable Intent data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

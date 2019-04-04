@@ -1,10 +1,8 @@
 package com.cloundwisdom.im.modules.ui.main;
 
-import android.os.Bundle;
-import android.widget.Button;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cloundwisdom.im.R;
+import com.cloundwisdom.im.common.base.BasePresenter;
 import com.cloundwisdom.im.common.base.MyActivity;
 import com.cloundwisdom.im.common.constant.ActivityConstant;
 import com.hjq.bar.TitleBar;
@@ -15,8 +13,6 @@ import butterknife.BindView;
 public class LoginActivity extends MyActivity {
     @BindView(R.id.view_title)
     TitleBar viewTitle;
-    @BindView(R.id.btn_get_permission)
-    Button btnGetPermission;
 
     @Override
     protected int getLayoutId() {
@@ -35,5 +31,10 @@ public class LoginActivity extends MyActivity {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

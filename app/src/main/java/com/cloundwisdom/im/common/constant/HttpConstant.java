@@ -5,9 +5,9 @@ package com.cloundwisdom.im.common.constant;
  */
 public class HttpConstant {
 
-    public static String BASE_HOST="";
+    public static String BASE_HOST="http://api.tianapi.com/";
 
-    public static String PROJECT="";
+    public static String PROJECT="military/";
 
     //访问URL
     public static String BASE_URL=BASE_HOST+PROJECT;

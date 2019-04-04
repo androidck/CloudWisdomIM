@@ -17,24 +17,19 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
  *    time   : 2018/10/18
  *    desc   : 支持沉浸式和侧滑的Activity基类（默认开启沉浸式状态栏和侧滑功能）
  */
-public abstract class UIActivity<V, T extends BasePresenter<V>> extends BaseActivity
+public abstract class UIActivity extends BaseActivity
         implements BGASwipeBackHelper.Delegate,
         ViewTreeObserver.OnGlobalLayoutListener {
 
     private ImmersionBar mImmersionBar;//状态栏沉浸
     private BGASwipeBackHelper mSwipeBackHelper;//侧滑返回
-    protected T mPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 在 super.onCreate(savedInstanceState) 之前调用该方法
         initSwipeBack();
         super.onCreate(savedInstanceState);
-        //判断是否使用MVP模式
-        mPresenter = createPresenter();
-        if (mPresenter != null) {
-            mPresenter.attachView((V) this);//因为之后所有的子类都要实现对应的View接口
-        }
     }
 
     @Override
@@ -43,8 +38,7 @@ public abstract class UIActivity<V, T extends BasePresenter<V>> extends BaseActi
         initImmersion();
     }
 
-    //用于创建Presenter和判断是否使用MVP模式(由子类实现)
-    protected abstract T createPresenter();
+
 
     /**
      * 初始化沉浸式

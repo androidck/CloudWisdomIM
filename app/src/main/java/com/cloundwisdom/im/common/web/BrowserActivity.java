@@ -14,11 +14,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cloundwisdom.im.R;
+import com.cloundwisdom.im.common.base.BasePresenter;
 import com.cloundwisdom.im.common.base.MyActivity;
 import com.cloundwisdom.im.common.constant.ActivityConstant;
 import com.cloundwisdom.im.modules.ui.main.MainActivity;
@@ -195,6 +195,11 @@ public class BrowserActivity extends MyActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }*/
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 
     @Override
     protected void onDestroy() {

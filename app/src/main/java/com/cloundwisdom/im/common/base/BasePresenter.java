@@ -9,9 +9,9 @@ public class BasePresenter<V> {
 
     /*================== 以下是网络请求接口 ==================*/
 
-    public BaseActivity mContext;
+    public MyActivity mContext;
 
-    public BasePresenter(BaseActivity context) {
+    public BasePresenter(MyActivity context) {
         mContext = context;
     }
 
@@ -25,6 +25,9 @@ public class BasePresenter<V> {
         return mViewRef != null && mViewRef.get() != null;
     }
 
+    public int page=1;
+    public int pageSize=10;
+
     public void detachView() {
         if (mViewRef != null) {
             mViewRef.clear();
@@ -34,6 +37,15 @@ public class BasePresenter<V> {
 
     public V getView() {
         return mViewRef != null ? mViewRef.get() : null;
+    }
+
+
+    /**
+     * Toast 提示
+     * @param msg
+     */
+    public void toast(String msg){
+
     }
 
 }

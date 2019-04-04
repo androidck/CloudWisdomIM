@@ -7,10 +7,13 @@
     android:orientation="vertical"
     tools:context=".modules.ui.main.MainActivity">
     <include layout="@layout/view_title"/>
-    <Button
-        android:id="@+id/btn_get_permission"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请求相机权限"
-        />
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

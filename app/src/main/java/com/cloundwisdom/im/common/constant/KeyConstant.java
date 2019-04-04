@@ -15,4 +15,6 @@ public class KeyConstant {
 
     /** 浏览器模式 **/
     public static int BROWSER_PARAM_MODE=1;
+
+    public static String NEWS_KEY="45b9e6a580d942b96e034bb207093193";
 }

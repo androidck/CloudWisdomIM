@@ -1,7 +1,6 @@
 package com.cloundwisdom.im.common.base;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,12 +26,12 @@ import me.drakeet.materialdialog.MaterialDialog;
  *    time   : 2018/10/18
  *    desc   : 项目中的 Activity 基类
  */
-public abstract class MyActivity extends UIActivity
+public abstract class MyActivity<V, T extends BasePresenter<V>> extends UIActivity
         implements OnTitleBarListener {
-
 
     private CustomDialog mDialogWaiting;
     private MaterialDialog mMaterialDialog;
+    public T mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +45,23 @@ public abstract class MyActivity extends UIActivity
     @Override
     protected void initLayout() {
         super.initLayout();
-
         // 初始化标题栏的监听
         if (getTitleBarId() > 0) {
             if (findViewById(getTitleBarId()) instanceof TitleBar) {
                 ((TitleBar) findViewById(getTitleBarId())).setOnTitleBarListener(this);
             }
         }
-
-
         mButterKnife = ButterKnife.bind(this);
-
         initOrientation();
+    }
+
+    @Override
+    protected void initPresenter() {
+        super.initPresenter();
+        mPresenter = createPresenter();
+        if (mPresenter != null) {
+            mPresenter.attachView((V) this);//因为之后所有的子类都要实现对应的View接口
+        }
     }
 
     /**
@@ -137,6 +141,9 @@ public abstract class MyActivity extends UIActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
         if (mButterKnife != null) mButterKnife.unbind();
         ActivityStackManager.getInstance().onActivityDestroyed(this);
     }
@@ -212,4 +219,10 @@ public abstract class MyActivity extends UIActivity
             mMaterialDialog = null;
         }
     }
+
+
+    //用于创建Presenter和判断是否使用MVP模式(由子类实现)
+    protected abstract T createPresenter();
+
+
 }
