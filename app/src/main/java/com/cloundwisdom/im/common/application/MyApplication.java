@@ -4,14 +4,19 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cloundwisdom.im.BuildConfig;
 import com.cloundwisdom.im.R;
 import com.cloundwisdom.im.common.base.UIApplication;
 import com.cloundwisdom.im.common.greendao.DaoMaster;
 import com.cloundwisdom.im.common.greendao.DaoSession;
 import com.hjq.toast.ToastUtils;
+import com.lqr.emoji.IImageLoader;
+import com.lqr.emoji.LQREmotionKit;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -46,6 +51,8 @@ public class MyApplication extends UIApplication {
         ToastUtils.init(this);
 
         setDatabase();
+
+        LQREmotionKit.init(this, (context, path, imageView) -> Glide.with(context).load(path).centerCrop().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView));
     }
 
     //全局设置上拉加载、下拉刷新样式

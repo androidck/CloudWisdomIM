@@ -19,9 +19,20 @@ import butterknife.Unbinder;
  *    time   : 2018/10/18
  *    desc   : 项目中 Fragment 懒加载基类
  */
-public abstract class MyLazyFragment extends UILazyFragment {
+public abstract class MyLazyFragment <V, T extends BasePresenter<V>>  extends UILazyFragment {
 
     private Unbinder mButterKnife; // View注解
+    protected T mPresenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //判断是否使用MVP模式
+        mPresenter = createPresenter();
+        if (mPresenter != null) {
+            mPresenter.attachView((V) this);//因为之后所有的子类都要实现对应的View接口
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +57,9 @@ public abstract class MyLazyFragment extends UILazyFragment {
     public void onDestroy() {
         super.onDestroy();
         mButterKnife.unbind();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
     }
 
     @Nullable
@@ -55,6 +69,11 @@ public abstract class MyLazyFragment extends UILazyFragment {
         }
         return null;
     }
+
+
+    //用于创建Presenter和判断是否使用MVP模式(由子类实现)
+    protected abstract T createPresenter();
+
 
     /**
      * 显示吐司
