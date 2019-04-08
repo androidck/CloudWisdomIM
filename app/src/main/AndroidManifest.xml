@@ -46,7 +46,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.ui.session.SessionActivity"
+        <activity android:name=".modules.ui.main.MainActivity"
             android:screenOrientation="portrait"
             >
             <intent-filter>

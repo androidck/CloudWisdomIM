@@ -2,6 +2,7 @@ package com.cloundwisdom.im.modules.ui.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.cloundwisdom.im.common.api.ApiRetrofit;
 import com.cloundwisdom.im.common.base.BaseObserver;
@@ -25,14 +26,24 @@ public class MainPresenter extends BasePresenter<IMainView> {
 
     private List<NewsEntry> lists=new ArrayList<>();
     private NewsAdapter adapter;
+    private String type;
     public MainPresenter(MyActivity context) {
         super(context);
     }
+
+
+    //设置标题
+    public void setTitle(String title){
+        this.type=title;
+    }
+
+
 
     public void initView(){
         getView().getRecyclerView().setLayoutManager(new LinearLayoutManager(prContext));
         adapter=new NewsAdapter(prContext,lists);
         getView().getRecyclerView().setAdapter(adapter);
+
         getView().getRefreshLayout().setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -59,12 +70,20 @@ public class MainPresenter extends BasePresenter<IMainView> {
                 },150);
             }
         });
+        adapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
+            @Override
+            public void OnClick(String url) {
+                prContext.startBrowserActivity(prContext,1,url);
+            }
+        });
+
+
     }
 
     //获取列表数据
     public void getNewsList(){
         prContext.showWaitingDialog("加载中....");
-        ApiRetrofit.getInstance().getNewsList(pageSize,page)
+        ApiRetrofit.getInstance().getNewsList(type,pageSize,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseObserver<List<NewsEntry>>(prContext) {
@@ -74,6 +93,7 @@ public class MainPresenter extends BasePresenter<IMainView> {
                         lists.addAll(t.getNewslist());
                         adapter.notifyDataSetChanged();
                         toast("加载完成");
+                        Log.d("newsEntry",t.getNewslist().toString());
                     }
 
                     @Override

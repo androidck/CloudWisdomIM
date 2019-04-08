@@ -1,6 +1,8 @@
 package com.cloundwisdom.im.common.base;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +13,11 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cloundwisdom.im.R;
 import com.cloundwisdom.im.common.view.CustomDialog;
+import com.cloundwisdom.im.common.web.BrowserActivity;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.base.helper.ActivityStackManager;
+import com.hjq.base.web.SonicJavaScriptInterface;
 import com.hjq.toast.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -224,5 +228,12 @@ public abstract class MyActivity<V, T extends BasePresenter<V>> extends UIActivi
     //用于创建Presenter和判断是否使用MVP模式(由子类实现)
     protected abstract T createPresenter();
 
-
+    //跳转到浏览器
+    public void startBrowserActivity(Context context, int mode, String url) {
+        Intent intent = new Intent(context, BrowserActivity.class);
+        intent.putExtra(BrowserActivity.PARAM_URL, url);
+        intent.putExtra(BrowserActivity.PARAM_MODE, mode);
+        intent.putExtra(SonicJavaScriptInterface.PARAM_CLICK_TIME, System.currentTimeMillis());
+        startActivityForResult(intent, -1);
+    }
 }

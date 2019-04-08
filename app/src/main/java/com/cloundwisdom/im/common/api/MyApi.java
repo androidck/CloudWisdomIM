@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -22,6 +23,6 @@ public interface MyApi {
     @POST("user/login")
     Observable<LoginResponse> login(@Body RequestBody body);*/
 
-    @GET("?key=45b9e6a580d942b96e034bb207093193")
-    Observable<BaseResponse<List<NewsEntry>>> getNewsList(@Query("num") int num, @Query("page") int page);
+    @GET("/{military}/?key=45b9e6a580d942b96e034bb207093193")
+    Observable<BaseResponse<List<NewsEntry>>> getNewsList(@Path ("military")String military,@Query("num") int num, @Query("page") int page);
 }

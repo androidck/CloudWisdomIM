@@ -62,8 +62,8 @@ public class ApiRetrofit extends BaseApiRetrofit {
         return mApi.login(getRequestBody(new LoginRequest(region, phone, password)));
     }*/
 
-   public Observable<BaseResponse<List<NewsEntry>>> getNewsList(int num, int page){
-       return mApi.getNewsList(num,page);
+   public Observable<BaseResponse<List<NewsEntry>>> getNewsList(String military,int num, int page){
+       return mApi.getNewsList(military,num,page);
    }
 
 

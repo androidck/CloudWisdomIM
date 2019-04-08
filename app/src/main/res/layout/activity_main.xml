@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".modules.ui.main.MainActivity">
-    <include layout="@layout/view_title"/>
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    <com.hjq.bar.TitleBar
+        android:id="@+id/view_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        android:layout_height="@dimen/space_80">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:layout_height="match_parent"
+            app:tabSelectedTextColor="#0096ff"
+            app:tabTextColor="#323232"
+            app:tabMode="scrollable"
+            ></android.support.design.widget.TabLayout>
+    </com.hjq.bar.TitleBar>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 </LinearLayout>

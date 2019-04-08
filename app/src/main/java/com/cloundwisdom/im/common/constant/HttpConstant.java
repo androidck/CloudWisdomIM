@@ -7,7 +7,7 @@ public class HttpConstant {
 
     public static String BASE_HOST="http://api.tianapi.com/";
 
-    public static String PROJECT="military/";
+    public static String PROJECT="";
 
     //访问URL
     public static String BASE_URL=BASE_HOST+PROJECT;

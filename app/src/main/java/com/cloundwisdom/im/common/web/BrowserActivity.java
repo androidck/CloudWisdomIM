@@ -3,6 +3,7 @@ package com.cloundwisdom.im.common.web;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,13 +15,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cloundwisdom.im.R;
 import com.cloundwisdom.im.common.base.BasePresenter;
 import com.cloundwisdom.im.common.base.MyActivity;
-import com.cloundwisdom.im.common.constant.ActivityConstant;
 import com.cloundwisdom.im.modules.ui.main.MainActivity;
 import com.hjq.bar.TitleBar;
 import com.hjq.base.web.SonicJavaScriptInterface;
@@ -44,19 +43,14 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-@Route(path = ActivityConstant.BROWSER)
 public class BrowserActivity extends MyActivity {
 
     @BindView(R.id.view_title)
-    TitleBar viewTitle;
+    TitleBar tbLoginTitle;
     @BindView(R.id.webView)
     WebView webView;
-
-    @Autowired
-    String url;//url
-    @Autowired
-    int mode;
 
     public final static String PARAM_URL = "param_url";
 
@@ -78,7 +72,7 @@ public class BrowserActivity extends MyActivity {
 
     @Override
     protected void initView() {
-        viewTitle.setLeftIcon(R.mipmap.bar_icon_back_black);
+        tbLoginTitle.setLeftIcon(R.mipmap.bar_icon_back_black);
         WebSettings webSettings = webView.getSettings();
 
         webSettings.setJavaScriptEnabled(true);
@@ -98,6 +92,8 @@ public class BrowserActivity extends MyActivity {
     @Override
     protected void initData() {
         Intent intent = getIntent();
+        String url = intent.getStringExtra(PARAM_URL);
+        int mode = intent.getIntExtra(PARAM_MODE, -1);
         if (TextUtils.isEmpty(url) || -1 == mode) {
             finish();
             return;
@@ -134,6 +130,7 @@ public class BrowserActivity extends MyActivity {
             if (null != sonicSession) {
                 sonicSession.bindClient(sonicSessionClient = new SonicSessionClientImpl());
             } else {
+
             }
         }
 
@@ -143,7 +140,7 @@ public class BrowserActivity extends MyActivity {
                 super.onPageFinished(view, url);
                 String title = view.getTitle();
                 if (!TextUtils.isEmpty(title)) {
-
+                    tbLoginTitle.setTitle(title);
                 }
 
                 if (sonicSession != null) {
@@ -197,17 +194,17 @@ public class BrowserActivity extends MyActivity {
     }*/
 
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
-
-    @Override
     protected void onDestroy() {
         if (null != sonicSession) {
             sonicSession.destroy();
             sonicSession = null;
         }
         super.onDestroy();
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override

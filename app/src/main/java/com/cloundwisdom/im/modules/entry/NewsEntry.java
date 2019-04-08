@@ -16,6 +16,16 @@ public class NewsEntry {
     private String description;
     private String picUrl;
     private String url;
+    /**
+     * id : 1110
+     * quest : 为什么黑人喜欢吃白色巧克力？
+     * result : 害怕咬到自己的手
+     */
+
+    private String id;
+    private String quest;
+    private String result;
+
 
     public String getCtime() {
         return ctime;
@@ -57,6 +67,7 @@ public class NewsEntry {
         this.url = url;
     }
 
+
     @Override
     public String toString() {
         return "NewsEntry{" +
@@ -65,6 +76,33 @@ public class NewsEntry {
                 ", description='" + description + '\'' +
                 ", picUrl='" + picUrl + '\'' +
                 ", url='" + url + '\'' +
+                ", id='" + id + '\'' +
+                ", quest='" + quest + '\'' +
+                ", result='" + result + '\'' +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getQuest() {
+        return quest;
+    }
+
+    public void setQuest(String quest) {
+        this.quest = quest;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

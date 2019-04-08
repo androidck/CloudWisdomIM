@@ -9,4 +9,6 @@ public interface IMainView {
     SmartRefreshLayout getRefreshLayout();
 
     RecyclerView getRecyclerView();
+
+
 }
